@@ -5,4 +5,4 @@
 source common/config.sh
 
 # fetch something over plain http
-docker exec containera curl -s $HOSTC:80
+docker exec containera curl $HOSTC:80
