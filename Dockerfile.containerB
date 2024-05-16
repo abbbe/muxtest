@@ -3,6 +3,10 @@ FROM debian:stable-slim
 RUN apt-get update 
 RUN apt-get install -y iproute2 iputils-ping
 
+RUN apt-get install -y python3 python3-virtualenv
+RUN virtualenv venv
+RUN . venv/bin/activate && pip install -q mitmproxy
+
 # copy the config and the entrypoint script
 COPY common/config.sh /config.sh
 COPY containerB/entrypoint.sh /entrypoint.sh

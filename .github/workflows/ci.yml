@@ -34,7 +34,9 @@ jobs:
       run: docker-compose up -d --build
 
     - name: Run tests
-      run: ./tests/100_ping.sh
+      run: |
+        ./tests/100_ping.sh
+        ./tests/200_a_curl_http_c.sh
 
     - name: Tear down
       run: docker-compose down
