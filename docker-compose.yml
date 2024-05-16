@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  containera:
+    container_name: containera
+    build:
+      context: ./containerA
+      dockerfile: Dockerfile
+    privileged: true
+    networks:
+      default:
+      networkAB:
+
+  containerb:
+    container_name: containerb
+    build:
+      context: ./containerB
+      dockerfile: Dockerfile
+    privileged: true
+    networks:
+      default:
+      networkAB:
+      networkBC:
+
+  containerc:
+    container_name: containerc
+    build:
+      context: ./containerC
+      dockerfile: Dockerfile
+    privileged: true
+    networks:
+      default:
+      networkBC:
+networks:
+  networkAB:
+    driver: bridge
+  networkBC:
+    driver: bridge
