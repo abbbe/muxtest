@@ -4,6 +4,7 @@ services:
   containera:
     container_name: containera
     build:
+      context: .
       dockerfile: Dockerfile.containerA
     privileged: true
     networks:
@@ -13,6 +14,7 @@ services:
   containerb:
     container_name: containerb
     build:
+      context: .
       dockerfile: Dockerfile.containerB
     privileged: true
     networks:
@@ -23,6 +25,7 @@ services:
   containerc:
     container_name: containerc
     build:
+      context: .
       dockerfile: Dockerfile.containerC
     privileged: true
     networks:
