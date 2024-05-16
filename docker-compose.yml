@@ -10,6 +10,8 @@ services:
     networks:
       default:
       networkAB:
+    extra_hosts:
+      - "${DOMAINC}:${HOSTC}"
 
   containerb:
     container_name: containerb

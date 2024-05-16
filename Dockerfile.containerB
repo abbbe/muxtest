@@ -7,7 +7,7 @@ RUN apt-get install -y python3 python3-virtualenv
 RUN virtualenv venv
 RUN . venv/bin/activate && pip install -q mitmproxy
 
-RUN apt-get install -y iptables tcpdump 
+RUN apt-get install -y iptables tcpdump procps
 
 # copy the config and the entrypoint script
 COPY common/config.sh /config.sh

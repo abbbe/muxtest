@@ -4,6 +4,7 @@ RUN apt-get update
 RUN apt-get install -y iproute2 iputils-ping
 
 RUN apt-get install -y python3 python3-pip
+RUN apt-get install -y tcpdump procps socat
 
 # copy the config and the entrypoint script
 COPY common/config.sh /config.sh
