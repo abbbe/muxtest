@@ -4,8 +4,7 @@ services:
   containera:
     container_name: containera
     build:
-      context: ./containerA
-      dockerfile: ../common/Dockerfile
+      dockerfile: Dockerfile.containerA
     privileged: true
     networks:
       default:
@@ -14,8 +13,7 @@ services:
   containerb:
     container_name: containerb
     build:
-      context: ./containerB
-      dockerfile: ../common/Dockerfile
+      dockerfile: Dockerfile.containerB
     privileged: true
     networks:
       default:
@@ -25,8 +23,7 @@ services:
   containerc:
     container_name: containerc
     build:
-      context: ./containerC
-      dockerfile: ../common/Dockerfile
+      dockerfile: Dockerfile.containerC
     privileged: true
     networks:
       default:
