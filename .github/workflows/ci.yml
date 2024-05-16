@@ -16,8 +16,8 @@ jobs:
       docker:
         image: docker:19.03.12
         options: --privileged
-        ports:
-          - 12345:12345 # adjust as necessary
+        #ports:
+        #  - 12345:12345 # adjust as necessary
         volumes:
           - /var/run/docker.sock:/var/run/docker.sock
 
@@ -34,8 +34,7 @@ jobs:
       run: docker-compose up -d --build
 
     - name: Run tests
-      run: ./test_ping.sh
+      run: ./tests/100_ping.sh
 
     - name: Tear down
-      if: always()
       run: docker-compose down
