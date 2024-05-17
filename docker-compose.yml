@@ -33,6 +33,13 @@ services:
     networks:
       default:
       networkBC:
+
+  containerd:
+    container_name: containerd
+    build:
+      context: .
+      dockerfile: Dockerfile.containerD
+
 networks:
   networkAB:
     driver: bridge

@@ -1,14 +1,9 @@
 #!/bin/bash -xe
 
-# a simple connectivity test between containers A and B.
+# container A makes two HTTPS requests to container C with different JA3 fingerprints
+
 source common/config.sh
 
-# 1. start flow tracker on
-$RUNB flowtracker on
+$RUNA curl --ciphers ECDHE-RSA-AES256-GCM-SHA384 -k https://$DOMAINC
 
-# 2. fetch something over TLS couple times
-$RUNA curl https://$DOMAINC
-$RUNA curl https://$DOMAINC
-
-# 3. cut flow tracking
-$RUNB flowtracker cut "test1"
+$RUNA curl --ciphers TLS_AES_256_GCM_SHA384 -k https://$DOMAINC

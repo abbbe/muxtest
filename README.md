@@ -5,6 +5,18 @@ It deploys cointainers A, B, and C.
 We run flows between A and C.
 Container B is used for manipulating the flows.
 
+## flow tracking
+
+## flow multiplexing
+
+## implementation
+
+## testing
+
+There is a main test script which brings up a testbed and invoke other test scripts.
+Below is an example of HTTP and HTTP requests flowing from A to C via B.
+The requests are intercepted by mitmproxy on B.
+
 ```
 abb@box:~/muxtest$ ./test.sh
 ...

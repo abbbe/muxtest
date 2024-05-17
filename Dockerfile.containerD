@@ -1,0 +1,14 @@
+FROM docker pull kalilinux/kali-rolling
+
+RUN apt-get update 
+RUN apt-get install -y iputils-ping procps tcpdump
+
+RUN apt-get install -y qsslcaudit
+
+# copy the config and the entrypoint script
+COPY common/config.sh /config.sh
+COPY containerD/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+# set the entrypoint
+ENTRYPOINT ["/entrypoint.sh"]
