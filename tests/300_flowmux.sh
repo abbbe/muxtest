@@ -77,9 +77,19 @@ test__partmatch_l4__match_ja3() {
     test_redir $N "$RUN1" "containerD" "$RUN2" "containerC"
 }
 
-# FIXME:
-# * kill the transparent mitmdump (launched from the containerB/entrypoint.sh)
-# * restart it with the flowmux plugin, something ike
+cleanup() {
+    $RUNB iptables -t nat -F PREROUTING
+    $RUNB sh -c "killall mitmdump && sleep 1"
+}
+
+# redirect TCP/80 and TCP/443 to localhost TCP/8080
+cleanup
+$RUNB iptables -t nat -A PREROUTING -s $HOSTA -d $HOSTC -p tcp --dport 80 -j REDIRECT --to-port 8080
+$RUNB iptables -t nat -A PREROUTING -s $HOSTA -d $HOSTC -p tcp --dport 443 -j REDIRECT --to-port 8080
+$RUNB ./venv/bin/mitmdump --ssl-insecure &
+sleep 1
+
+# FIXME: the flowmux plugin, something ike
 # mitmdump -s ./mitmproxy/contrib/flowmux/flowmux.py \
 #  --set redirect_flow '{"ip.src": "$HOSTA", "ip.dst": "$HOSTC", "tcp.dport": "443", "ja3": "070ed1ebe4979528bf846db0c1382e79"}' \
 #  --set redirect_to $HOSTD:8443
@@ -91,5 +101,7 @@ test__mismatch_l4__partmatch_ja3
 # FIXME: tests below should pass when multiplexor is implemented
 # test__match_l4__partmatch_ja3
 # test__partmatch_l4__match_ja3
+
+cleanup
 
 echo "OK"

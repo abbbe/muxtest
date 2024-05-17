@@ -1,13 +1,24 @@
 FROM debian:stable-slim
 
-RUN apt-get update 
+RUN apt-get update
+# generic dependencies
 RUN apt-get install -y iproute2 iputils-ping
-RUN apt-get install -y iptables tcpdump procps
+# convenience tools
+RUN apt-get install -y tcpdump procps vim
+# dependencies specific to containerB
+RUN apt-get install -y iptables
 
-# install qsslcaudit
+# install mitmproxy
 RUN apt-get install -y python3 python3-virtualenv
 RUN virtualenv venv
 RUN . venv/bin/activate && pip install -q mitmproxy
+
+RUN apt-get install -y git
+
+# install ftracker
+RUN git clone https://github.com/abbbe/ftracker.git
+RUN . /venv/bin/activate && pip install -e /ftracker
+RUN apt-get install -y tshark wireshark-common
 
 # FIXME: pull flowmux plugin
 

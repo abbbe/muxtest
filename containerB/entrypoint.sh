@@ -17,12 +17,5 @@ ip link set br0 up
 # we must have an address for normal flow of the upstream packets
 ip addr add $HOSTB/$NETMASKLEN dev br0
 
-# redirect TCP/80 and TCP/443 to localhost TCP/8080
-iptables -t nat -A PREROUTING -s $HOSTA -d $HOSTC -p tcp --dport 80 -j REDIRECT --to-port 8080
-iptables -t nat -A PREROUTING -s $HOSTA -d $HOSTC -p tcp --dport 443 -j REDIRECT --to-port 8080
-
-# start mitmdump on TCP/8080 as a transparent proxy
-./venv/bin/mitmdump --ssl-insecure &
-
 # keep the container running
 exec sleep inf
