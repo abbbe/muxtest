@@ -43,10 +43,12 @@ mitmdump -s ./mitmproxy/contrib/flowmux/flowmux.py \
 
 There is a main test script which brings up a testbed and invoke other test scripts.
 Currently implemented:
-* 100_ping: A/E pings C/D, just to test L3 connectivity
-* 200_curl: A/E fetches a URL from C/D (ignoring the content)
-* 300_flowmux: A/E fetch 
+* 100_ping: A/E ping C/D (just testing L3 connectivity)
+* 200_curl: A/E fetch URL from C/D (just testing mock HTTP/HTTPS servers)
+* 300_flowmux: A/E fetch URLs from C/D (via mitmproxy+flowmux)
+* 400_flowtracker: A/E fetch URLs from C/D (no mitmproxy), generates report
 
+These tests are run on commit into main branch on Github.
 ```
 abb@box:~/muxtest$ ./test.sh
 ```
