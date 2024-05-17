@@ -77,8 +77,14 @@ test__partmatch_l4__match_ja3() {
     test_redir $N "$RUN1" "containerD" "$RUN2" "containerC"
 }
 
-test__self
+# FIXME:
+# * kill the transparent mitmdump (launched from the containerB/entrypoint.sh)
+# * restart it with the flowmux plugin, something ike
+# mitmdump -s ./mitmproxy/contrib/flowmux/flowmux.py \
+#  --set redirect_flow '{"ip.src": "$HOSTA", "ip.dst": "$HOSTC", "tcp.dport": "443", "ja3": "070ed1ebe4979528bf846db0c1382e79"}' \
+#  --set redirect_to $HOSTD:8443
 
+test__self
 test__partmatch_l4__mismatch_ja3
 test__mismatch_l4__partmatch_ja3
 

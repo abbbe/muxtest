@@ -1,6 +1,6 @@
 #!/bin/bash -xe
 
-# FIXME
+# FIXME: flowtracker testing
 
 source common/config.sh
 
