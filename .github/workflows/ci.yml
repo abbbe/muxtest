@@ -38,6 +38,7 @@ jobs:
         ./tests/100_ping.sh
         ./tests/200_ae_curl_cd.sh
         ./tests/300_flowmux.sh
+        ./tests/400_flowtracker.sh
 
     - name: Tear down
       run: ./down.sh
