@@ -1,9 +1,14 @@
-FROM docker pull kalilinux/kali-rolling
+FROM kalilinux/kali-rolling
 
 RUN apt-get update 
-RUN apt-get install -y iputils-ping procps tcpdump
+RUN apt-get install -y iputils-ping iproute2 procps tcpdump
 
 RUN apt-get install -y qsslcaudit
+
+# configure mock web server
+RUN apt-get install -y python3 socat
+RUN mkdir -p /var/www/html
+RUN echo "containerD" > /var/www/html/container.txt
 
 # copy the config and the entrypoint script
 COPY common/config.sh /config.sh

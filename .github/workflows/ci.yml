@@ -36,7 +36,8 @@ jobs:
     - name: Run tests
       run: |
         ./tests/100_ping.sh
-        ./tests/200_a_curl_c.sh
+        ./tests/200_ae_curl_cd.sh
+        ./tests/300_flowmux.sh
 
     - name: Tear down
       run: ./down.sh

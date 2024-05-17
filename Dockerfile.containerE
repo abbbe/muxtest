@@ -1,0 +1,14 @@
+FROM debian:stable-slim
+
+RUN apt-get update 
+RUN apt-get install -y iputils-ping iproute2 procps tcpdump
+
+RUN apt-get install -y curl
+
+# copy the config and the entrypoint script
+COPY common/config.sh /config.sh
+COPY containerE/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+# set the entrypoint
+ENTRYPOINT ["/entrypoint.sh"]

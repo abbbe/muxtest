@@ -1,6 +1,7 @@
 #!/bin/bash -xe
 
-# a simple connectivity test between containers A and B.
+# FIXME
+
 source common/config.sh
 
 # 1. start flow tracker on

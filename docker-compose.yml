@@ -12,6 +12,7 @@ services:
       networkAB:
     extra_hosts:
       - "${DOMAINC}:${HOSTC}"
+      - "${DOMAIND}:${HOSTD}"
 
   containerb:
     container_name: containerb
@@ -23,6 +24,9 @@ services:
       default:
       networkAB:
       networkBC:
+    extra_hosts:
+      - "${DOMAINC}:${HOSTC}"
+      - "${DOMAIND}:${HOSTD}"
 
   containerc:
     container_name: containerc
@@ -34,11 +38,30 @@ services:
       default:
       networkBC:
 
+
   containerd:
     container_name: containerd
     build:
       context: .
       dockerfile: Dockerfile.containerD
+    privileged: true
+    networks:
+      default:
+      networkBC:
+
+
+  containere:
+    container_name: containere
+    build:
+      context: .
+      dockerfile: Dockerfile.containerE
+    privileged: true
+    networks:
+      default:
+      networkAB:
+    extra_hosts:
+      - "${DOMAINC}:${HOSTC}"
+      - "${DOMAIND}:${HOSTD}"
 
 networks:
   networkAB:

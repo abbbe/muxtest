@@ -2,9 +2,12 @@ FROM debian:stable-slim
 
 RUN apt-get update 
 RUN apt-get install -y iproute2 iputils-ping
+RUN apt-get install -y tcpdump procps
 
-RUN apt-get install -y python3 python3-pip
-RUN apt-get install -y tcpdump procps socat
+# configure mock web server
+RUN apt-get install -y python3 socat
+RUN mkdir -p /var/www/html
+RUN echo "containerC" > /var/www/html/container.txt
 
 # copy the config and the entrypoint script
 COPY common/config.sh /config.sh

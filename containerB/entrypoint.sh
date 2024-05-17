@@ -22,6 +22,10 @@ iptables -t nat -A PREROUTING -s $HOSTA -d $HOSTC -p tcp --dport 80 -j REDIRECT 
 iptables -t nat -A PREROUTING -s $HOSTA -d $HOSTC -p tcp --dport 443 -j REDIRECT --to-port 8080
 
 # start mitmdump
+# FIXME use flowmux plugin
+# mitmdump -s ./mitmproxy/contrib/flowmux/flowmux.py \
+#  --set redirect_ja3 070ed1ebe4979528bf846db0c1382e79 \
+#  --set redirect_to $HOSTD:8443
 ./venv/bin/mitmdump --ssl-insecure &
 
 # keep the container running
