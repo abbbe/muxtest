@@ -79,7 +79,7 @@ test__partmatch_l4__match_ja3() {
 
 cleanup() {
     $RUNB iptables -t nat -F PREROUTING
-    $RUNB sh -c "killall mitmdump && sleep 1"
+    $RUNB sh -c "killall mitmdump && sleep 1 || true"
 }
 
 # redirect TCP/80 and TCP/443 to localhost TCP/8080
